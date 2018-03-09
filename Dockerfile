@@ -42,11 +42,12 @@ COPY wsgi.py /app/wsgi.py
 COPY uwsgi.ini /app/uwsgi.ini
 COPY nginx.conf /app/nginx.conf
 
-RUN chgrp -R 0 /app /venv /web && \
-    chmod -R g=u /app /venv /web && \
-    useradd -u 1001 -g 0 alerta
-
-USER 1001
+#RUN chgrp -R 0 /app /venv /web && \
+#    chmod -R g=u /app /venv /web && \
+#    useradd -u 1001 -g 0 alerta
+#
+#USER 1001
+#USER 
 
 ENV ALERTA_SVR_CONF_FILE /app/alertad.conf
 ENV ALERTA_CONF_FILE /app/alerta.conf
