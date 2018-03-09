@@ -36,6 +36,8 @@ RUN tar zxvf /tmp/web.tar.gz -C /tmp && \
     mv /tmp/angular-alerta-webui-master/app /web && \
     mv /web/config.js /web/config.js.orig
 
+RUN mkdir -p /certs
+
 COPY wsgi.py /app/wsgi.py
 COPY uwsgi.ini /app/uwsgi.ini
 COPY nginx.conf /app/nginx.conf
