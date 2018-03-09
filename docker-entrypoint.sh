@@ -8,7 +8,7 @@ if [ ! -z "$(ls -A /certs)" ]; then
 fi
 
 # Run subsequent commands as alerta
-su -u alerta
+su - alerta
 
 RUN_ONCE=/app/.run_once
 
