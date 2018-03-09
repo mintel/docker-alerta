@@ -47,8 +47,6 @@ RUN chgrp -R 0 /app /venv /web && \
     useradd -u 1001 -g 0 alerta && \
     groupadd alerta
 
-#USER 1001
-
 ENV ALERTA_SVR_CONF_FILE /app/alertad.conf
 ENV ALERTA_CONF_FILE /app/alerta.conf
 ENV ALERTA_WEB_CONF_FILE /web/config.js

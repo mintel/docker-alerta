@@ -1,7 +1,17 @@
 #!/bin/bash
 set -x
 
+# Install certs
+if [ ! -z "$(ls -A /certs)" ]; then
+  cp /certs/*.crt /certs/*.pem /usr/local/share/ca-certificates/ 2>/dev/null
+  update-ca-certificates
+fi
+
+# Run subsequent commands as alerta
+su -u alerta
+
 RUN_ONCE=/app/.run_once
+
 
 # Generate web console config, if not supplied
 if [ ! -f "${ALERTA_WEB_CONF_FILE}" ]; then
@@ -53,12 +63,6 @@ EOF
     /venv/bin/pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=plugins/$plugin
   done
   touch ${RUN_ONCE}
-fi
-
-# Install certs
-if [ ! -z "$(ls -A /certs)" ]; then
-  cp /certs/*.crt /certs/*.pem /usr/local/share/ca-certificates/ 2>/dev/null
-  update-ca-certificates
 fi
 
 exec "$@"
