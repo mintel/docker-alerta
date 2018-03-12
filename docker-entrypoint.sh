@@ -8,4 +8,4 @@ if [ ! -z "$(ls -A /certs)" ]; then
 fi
 
 # Run subsequent commands as alerta
-exec su - alerta -c /app/start-alerta.sh
+exec su --preserve-environment - alerta -c /app/start-alerta.sh
