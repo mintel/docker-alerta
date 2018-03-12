@@ -41,6 +41,7 @@ RUN mkdir -p /certs
 COPY wsgi.py /app/wsgi.py
 COPY uwsgi.ini /app/uwsgi.ini
 COPY nginx.conf /app/nginx.conf
+COPY start-alerta.sh /app/start-alerta.sh
 
 RUN chgrp -R 0 /app /venv /web && \
     chmod -R g=u /app /venv /web && \
