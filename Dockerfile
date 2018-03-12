@@ -41,13 +41,11 @@ RUN mkdir -p /certs
 COPY wsgi.py /app/wsgi.py
 COPY uwsgi.ini /app/uwsgi.ini
 COPY nginx.conf /app/nginx.conf
-COPY start-alerta.sh /app/start-alerta.sh
 
 RUN chgrp -R 0 /app /venv /web && \
-    chmod -R g=u /app /venv /web && \
-    useradd -u 1001 -g 0 alerta && \
-    groupadd alerta
+    chmod -R g=u /app /venv /web
 
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ENV ALERTA_SVR_CONF_FILE /app/alertad.conf
 ENV ALERTA_CONF_FILE /app/alerta.conf
 ENV ALERTA_WEB_CONF_FILE /web/config.js
